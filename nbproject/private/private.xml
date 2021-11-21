@@ -3,7 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/Proyectos/RealTourCompany/src/Database/Conexion.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Database/TestConn.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/Comuna.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/Region.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Method/DepartamentosMethod.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Database/Conexion.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/View/MenuAdmin.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/View/MenuFuncionario.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Main/Main.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Controller/LoginController.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/View/Login.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/View/VistaDepartamentos.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/Usuario.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/TipoUsuario.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/Provincia.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Method/CuentaUsuarioMethod.java</file>
+            <file>file:/C:/Users/thoma/Desktop/turismorial/RealTourCompany/src/Model/CuentaUsuario.java</file>
         </group>
     </open-files>
 </project-private>

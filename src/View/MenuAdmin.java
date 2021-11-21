@@ -32,6 +32,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         MenuBarAdmin = new javax.swing.JMenuBar();
         MenuMantenedores = new javax.swing.JMenu();
         menuItemDepartamentos = new javax.swing.JMenuItem();
+        menuItemUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,6 +48,14 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
         MenuMantenedores.add(menuItemDepartamentos);
+
+        menuItemUsuarios.setText("Usuarios");
+        menuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemUsuariosActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(menuItemUsuarios);
 
         MenuBarAdmin.add(MenuMantenedores);
 
@@ -80,6 +89,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         VistaDepartamentos vistadeptos = new VistaDepartamentos();
         vistadeptos.setVisible(true);
     }//GEN-LAST:event_menuItemDepartamentosActionPerformed
+
+    private void menuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUsuariosActionPerformed
+      VistaUsuario vu = new VistaUsuario();
+      vu.setVisible(true);
+    }//GEN-LAST:event_menuItemUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,5 +136,6 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     public javax.swing.JMenuItem menuItemDepartamentos;
+    public javax.swing.JMenuItem menuItemUsuarios;
     // End of variables declaration//GEN-END:variables
 }

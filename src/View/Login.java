@@ -121,10 +121,12 @@ public class Login extends javax.swing.JFrame {
                     if (cu.getIdTipoUsuario().getIdtipoUsuario()== 2) {
                         MenuAdmin ma = new MenuAdmin();
                         ma.setVisible(true);
+                        this.dispose();
                     }
                     if (cu.getIdTipoUsuario().getIdtipoUsuario() == 3) {
                         MenuFuncionario mf = new MenuFuncionario();
                         mf.setVisible(true);
+                        this.dispose();
                     }
                 }else{
                     JOptionPane.showMessageDialog(null,"Credenciales incorrectas, vuelta a intentarlo");

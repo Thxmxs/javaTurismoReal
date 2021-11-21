@@ -1,17 +1,27 @@
 package Method;
 
 import Database.Conexion;
+import Model.Comuna;
+import Model.Provincia;
+import Model.Region;
+import java.awt.TextField;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class DepartamentosMethod {
-        PreparedStatement ps=null;
-        ResultSet rs=null;
+
+    PreparedStatement ps = null;
+
+    ResultSet rs = null;
+    ResultSet rs2 = null;
+    //no borrar se usan
 
     private static Connection conn;
 
@@ -51,23 +61,172 @@ public class DepartamentosMethod {
             System.out.println(e);
         }
     }
-    public void PasarDatosTablasACampos(JTable tablaDepartamentos,JTextField txt1,JTextField txt2,JTextField txt3,JTextField txt4,JTextField txt5,
-    JTextField txt6,JTextField txt7,JTextField txt8,JTextField txt9,JTextField txt10,JComboBox cmb1,JComboBox cmb2,JComboBox cmb3){
 
+    public Vector<Region> mostrarRegiones() {
+        Region region = null;
+        Vector<Region> vectorRegion = new Vector<Region>();
+
+        try {
+
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement("select * from region");
+            rs = ps.executeQuery();
+            region = new Region();
+            region.setIdRegion(0);
+            region.setNombreRegion("Seleccione una region");
+            vectorRegion.add(region);
+            while (rs.next()) {
+                region = new Region();
+                region.setIdRegion(rs.getInt("id_region"));
+                region.setNombreRegion(rs.getString("nombre_region"));
+                vectorRegion.add(region);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return vectorRegion;
+    }
+
+    public Vector<Comuna> mostrarComunas(Integer idProvincia) {
+        Comuna comuna = null;
+        Vector<Comuna> vectorComuna = new Vector<Comuna>();
+
+        try {
+
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement("select * from comuna where provincia_id_provincia=" + idProvincia);
+            rs = ps.executeQuery();
+            comuna = new Comuna();
+            comuna.setIdComuna(0);
+            comuna.setNombreComuna("Seleccione una Comuna");
+            comuna.setProvinciaIdProvincia(0);
+            comuna.setProvinciaRegionIdRegion(0);
+            vectorComuna.add(comuna);
+            while (rs.next()) {
+                comuna = new Comuna();
+                comuna.setIdComuna(rs.getInt("id_comuna"));
+                comuna.setNombreComuna(rs.getString("nombre_comuna"));
+                comuna.setProvinciaIdProvincia(rs.getInt("provincia_id_provincia"));
+                comuna.setProvinciaRegionIdRegion(rs.getInt("provincia_region_id_region"));
+                vectorComuna.add(comuna);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return vectorComuna;
+    }
+
+    public Vector<Provincia> mostrarProvincias(Integer idRegion) {
+        Provincia provincia = null;
+        Vector<Provincia> vectorProvincia = new Vector<Provincia>();
+
+        try {
+
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement("select * from provincia where region_id_region=" + idRegion);
+            rs = ps.executeQuery();
+            provincia = new Provincia();
+            provincia.setIdProvincia(0);
+            provincia.setNombreProvincia("Seleccione una provincia");
+            provincia.setRegionIdRegion(0);
+            vectorProvincia.add(provincia);
+            while (rs.next()) {
+                provincia = new Provincia();
+                provincia.setIdProvincia(rs.getInt("id_provincia"));
+                provincia.setNombreProvincia(rs.getString("nombre_provincia"));
+                provincia.setRegionIdRegion(rs.getInt("region_id_region"));
+                vectorProvincia.add(provincia);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return vectorProvincia;
+    }
+
+    public void agregarDepartamento(JTextField txtdir, JTextField txtCostoDepartamento, JTextField txtEstadoDepto, JTextField txtdescripcion,
+            JTextField txtorientacion, JTextField txtestacionamiento, JTextField txtnumHabitaciones, JTextField txtnumbaños,
+            JTextField txtnumEstacionamientos, int comuna, int provincia, int region) {
 
         try {
             conn = Conexion.getConnection();
-           
+            ps = conn.prepareStatement("insert into departamento (direccion,costo_departamento,estado_departamento, "
+                    + "descripcion_estado_departamento,orientacion_departamento,estacionamiento,num_habitaciones,num_baño,"
+                    + "num_estacionamiento,comuna_id_comuna,comuna_provincia_id_provincia,comuna_provincia_region_id_region) values (?,?,?,?,?,?,?,?,?,?,?,?) ");
+            ps.setString(1, txtdir.getText());
+            ps.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
+            ps.setString(3, txtEstadoDepto.getText());
+            ps.setString(4, txtdescripcion.getText());
+            ps.setString(5, txtorientacion.getText());
+            ps.setString(6, txtestacionamiento.getText());
+            ps.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
+            ps.setInt(8, Integer.parseInt(txtnumbaños.getText()));
+            ps.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
+            ps.setInt(10, comuna);
+            ps.setInt(11, provincia);
+            ps.setInt(12, region);
 
-            int fila = tablaDepartamentos.getSelectedRow();
-            String codigo = tablaDepartamentos.getValueAt(fila, 0).toString();
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado Correctamente");
+        } catch (Exception e) {
+            System.out.println("Error ," + e);
+        }
+    }
 
-            ps = conn.prepareStatement("select d.id_departamento,d.direccion,d.costo_departamento,d.estado_departamento,d.descripcion_estado_departamento,d.orientacion_departamento,d.estacionamiento,d.num_habitaciones,d.num_baño,d.num_estacionamiento, \n" +
-"c.nombre_comuna,p.nombre_provincia,r.nombre_region from departamento d join comuna c on d.comuna_id_comuna = c.id_comuna join provincia p on c.provincia_id_provincia = p.id_provincia join region r on p.region_id_region = r.id_region where d.id_departamento=?");
+    public void ActualizarDepartamento(JTextField txtdir, JTextField txtCostoDepartamento, JTextField txtEstadoDepto, JTextField txtdescripcion,
+            JTextField txtorientacion, JTextField txtestacionamiento, JTextField txtnumHabitaciones, JTextField txtnumbaños,
+            JTextField txtnumEstacionamientos, int comuna, int provincia, int region, JTextField txtIdDepartamento) {
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement("update departamento set direccion=?,costo_departamento=?,estado_departamento=?, "
+                    + "descripcion_estado_departamento=?,orientacion_departamento=?,estacionamiento=?,num_habitaciones=?,num_baño=?,"
+                    + "num_estacionamiento=?,comuna_id_comuna=?,comuna_provincia_id_provincia=?,comuna_provincia_region_id_region=? where id_departamento=?");
+            ps.setString(1, txtdir.getText());
+            ps.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
+            ps.setString(3, txtEstadoDepto.getText());
+            ps.setString(4, txtdescripcion.getText());
+            ps.setString(5, txtorientacion.getText());
+            ps.setString(6, txtestacionamiento.getText());
+            ps.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
+            ps.setInt(8, Integer.parseInt(txtnumbaños.getText()));
+            ps.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
+            ps.setInt(10, comuna);
+            ps.setInt(11, provincia);
+            ps.setInt(12, region);
+            ps.setInt(13, Integer.parseInt(txtIdDepartamento.getText()));
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Actualizado Correctamente");
+        } catch (Exception e) {
+            System.out.println("Error ," + e);
+        }
+    }
+     public void EliminarDepartamento(JTextField txtIdDepartamento) {
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement("delete from departamento where id_departamento=?");
+
+            ps.setInt(1, Integer.parseInt(txtIdDepartamento.getText()));
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado Correctamente");
+        } catch (Exception e) {
+            System.out.println("Error ," + e);
+        }
+    }
+
+    public void PasarDatosTablasACampos(int fila,String codigo,JTextField txt1, JTextField txt2, JTextField txt3, JTextField txt4, JTextField txt5,
+            JTextField txt6, JTextField txt7, JTextField txt8, JTextField txt9, JTextField txt10 ) {
+Region region = new Region();
+        try {
+            conn = Conexion.getConnection();
+
+            ps = conn.prepareStatement("select * from departamento where id_departamento=?");
 
             ps.setString(1, codigo);
-            rs=ps.executeQuery();
-            
+            rs = ps.executeQuery();
+
             while (rs.next()) {
                 txt1.setText(rs.getString("id_departamento"));
                 txt2.setText(rs.getString("direccion"));
@@ -79,71 +238,14 @@ public class DepartamentosMethod {
                 txt8.setText((rs.getString("num_habitaciones")));
                 txt9.setText(rs.getString("num_baño"));
                 txt10.setText(rs.getString("num_estacionamiento"));
-                cmb1.setSelectedItem(rs.getString("nombre_comuna"));
-                cmb2.setSelectedItem(rs.getString("nombre_provincia"));
-                cmb3.setSelectedItem(rs.getString("nombre_region"));
+                //cmb1.setSelectedItem((Integer.parseInt(rs.getString("comuna_provincia_region_id_region"))));
+                //cmb2.setSelectedItem((Integer.parseInt(rs.getString("comuna_provincia_id_provincia"))));
+                //cmb3.setSelectedItem((Integer.parseInt(rs.getString("comuna_id_comuna"))));
 
             }
         } catch (Exception e) {
             System.err.println(e);
         }
     }
-        public void mostrarCmbxRegiones(JComboBox combo){
-        try {
-            
-            Conexion con = new Conexion();
-            conn = Conexion.getConnection();
-            
-            ps = conn.prepareStatement("select * from region");
-            rs = ps.executeQuery();
-         combo.addItem("seleccione region");
-            while (rs.next()) {                
-                combo.addItem(rs.getString("nombre_region"));
-                
-            }
-            rs.close();
-        } catch (Exception e) {
-            System.err.println("Error "+e);
-        }
-        
-        
-    }
-      public void mostrarCmbxComunas(JComboBox combo){
-        try {
-            Conexion con = new Conexion();
-            Connection conexion = con.getConnection();
-            
-            ps = conexion.prepareStatement("select * from comuna");
-            rs = ps.executeQuery();
-         combo.addItem("seleccione comuna");
-            while (rs.next()) {                
-                combo.addItem(rs.getString("nombre_comuna"));
-                
-            }
-            rs.close();
-        } catch (Exception e) {
-            System.err.println("Error "+e);
-        }
-        
-        
-    }
-        public void mostrarCmbxProvincias(JComboBox combo){
-        try {
-            Conexion con = new Conexion();
-            Connection conexion = con.getConnection();
-            
-            ps = conexion.prepareStatement("select * from provincia");
-            rs = ps.executeQuery();
-         combo.addItem("seleccione provincia");
-            while (rs.next()) {                
-                combo.addItem(rs.getString("nombre_provincia"));
-                
-            }
-            rs.close();
-        } catch (Exception e) {
-            System.err.println("Error "+e);
-        }
-        
-        
-    }
+
 }
