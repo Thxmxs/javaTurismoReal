@@ -73,8 +73,8 @@ public class UsuarioMethod {
         }
     }
 
-    public void ActualizarDepartamento(JTextField rutuser, JTextField apellido, JTextField email,
-            JTextField direccion, JTextField telefono, JTextField nombre) {
+    public void ActualizarDepartamento(JTextField rutuser,JTextField nombre, JTextField apellido, JTextField email,
+            JTextField direccion,JTextField telefono) {
 
         try {
             String sql = "{ call sp_update_usuarios_by_rut_java( ?, ?, ?, ?, ?, ?) }";
