@@ -53,7 +53,7 @@ public class VistaUsuario extends javax.swing.JFrame {
         tablaUsuarios = new javax.swing.JTable();
         btonCargarTablaUsuarios = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblEmail.setText("Email");
 
@@ -257,7 +257,7 @@ public class VistaUsuario extends javax.swing.JFrame {
         } else if (!txtTelefono.getText().matches("^(\\+56)(\\s?)(0?9)(\\s?)[9876543]\\d{7}$")) {
             JOptionPane.showMessageDialog(null, "El formato del telefono debe ser +56XXXXXXXXX");
         } else {
-             us.ActualizarDepartamento(txtRutUsuario1, txtApellido, txtEmail, txtDireccion, txtTelefono, txtNombre);
+             us.ActualizarDepartamento(txtRutUsuario1,txtNombre,txtApellido,txtEmail,txtDireccion,txtTelefono);
             limpiarTxt();
         }
        

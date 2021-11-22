@@ -33,7 +33,8 @@ public class MenuAdmin extends javax.swing.JFrame {
         MenuMantenedores = new javax.swing.JMenu();
         menuItemDepartamentos = new javax.swing.JMenuItem();
         menuItemUsuarios = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        MenuMantenciones = new javax.swing.JMenu();
+        menuItemMantencionDepartamentos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,8 +60,17 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         MenuBarAdmin.add(MenuMantenedores);
 
-        jMenu2.setText("Edit");
-        MenuBarAdmin.add(jMenu2);
+        MenuMantenciones.setText("Mantencion");
+
+        menuItemMantencionDepartamentos.setText("Departamentos");
+        menuItemMantencionDepartamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemMantencionDepartamentosActionPerformed(evt);
+            }
+        });
+        MenuMantenciones.add(menuItemMantencionDepartamentos);
+
+        MenuBarAdmin.add(MenuMantenciones);
 
         setJMenuBar(MenuBarAdmin);
 
@@ -94,6 +104,11 @@ public class MenuAdmin extends javax.swing.JFrame {
       VistaUsuario vu = new VistaUsuario();
       vu.setVisible(true);
     }//GEN-LAST:event_menuItemUsuariosActionPerformed
+
+    private void menuItemMantencionDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantencionDepartamentosActionPerformed
+        VistaMantencionDepartamento vmd = new VistaMantencionDepartamento();
+        vmd.setVisible(true);
+    }//GEN-LAST:event_menuItemMantencionDepartamentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,10 +147,11 @@ public class MenuAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBarAdmin;
+    public javax.swing.JMenu MenuMantenciones;
     private javax.swing.JMenu MenuMantenedores;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
     public javax.swing.JMenuItem menuItemDepartamentos;
+    public javax.swing.JMenuItem menuItemMantencionDepartamentos;
     public javax.swing.JMenuItem menuItemUsuarios;
     // End of variables declaration//GEN-END:variables
 }
