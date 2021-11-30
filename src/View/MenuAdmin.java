@@ -33,6 +33,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         MenuMantenedores = new javax.swing.JMenu();
         menuItemDepartamentos = new javax.swing.JMenuItem();
         menuItemUsuarios = new javax.swing.JMenuItem();
+        menuItemObjeto = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         MenuMantenciones = new javax.swing.JMenu();
         menuItemMantencionDepartamentos = new javax.swing.JMenuItem();
 
@@ -58,6 +61,30 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         MenuMantenedores.add(menuItemUsuarios);
 
+        menuItemObjeto.setText("Objetos");
+        menuItemObjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemObjetoActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(menuItemObjeto);
+
+        jMenuItem1.setText("Inventario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(jMenuItem1);
+
+        jMenuItem2.setText("Pagos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(jMenuItem2);
+
         MenuBarAdmin.add(MenuMantenedores);
 
         MenuMantenciones.setText("Mantencion");
@@ -81,12 +108,12 @@ public class MenuAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addContainerGap(686, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
+                .addContainerGap(372, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -109,6 +136,21 @@ public class MenuAdmin extends javax.swing.JFrame {
         VistaMantencionDepartamento vmd = new VistaMantencionDepartamento();
         vmd.setVisible(true);
     }//GEN-LAST:event_menuItemMantencionDepartamentosActionPerformed
+
+    private void menuItemObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemObjetoActionPerformed
+      VistaIngresarObjeto vii = new VistaIngresarObjeto();
+      vii.setVisible(true);
+    }//GEN-LAST:event_menuItemObjetoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      VistaInventarioDepartamento vid = new VistaInventarioDepartamento();
+      vid.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       VistaRecibirPago vrp = new VistaRecibirPago();
+       vrp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,8 +192,11 @@ public class MenuAdmin extends javax.swing.JFrame {
     public javax.swing.JMenu MenuMantenciones;
     private javax.swing.JMenu MenuMantenedores;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenuItem menuItemDepartamentos;
     public javax.swing.JMenuItem menuItemMantencionDepartamentos;
+    private javax.swing.JMenuItem menuItemObjeto;
     public javax.swing.JMenuItem menuItemUsuarios;
     // End of variables declaration//GEN-END:variables
 }
