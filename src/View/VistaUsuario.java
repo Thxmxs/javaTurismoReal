@@ -234,6 +234,7 @@ public class VistaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El formato del telefono debe ser +56XXXXXXXXX");
         } else {
             us.agregarUsuario(txtRutUsuario1, txtNombre, txtApellido, txtEmail, txtDireccion, txtTelefono);
+            us.cargarTablaUsuarios(tablaUsuarios);
             limpiarTxt();
         }
     }//GEN-LAST:event_btnInsertarActionPerformed
@@ -258,6 +259,7 @@ public class VistaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El formato del telefono debe ser +56XXXXXXXXX");
         } else {
              us.ActualizarDepartamento(txtRutUsuario1,txtNombre,txtApellido,txtEmail,txtDireccion,txtTelefono);
+             us.cargarTablaUsuarios(tablaUsuarios);
             limpiarTxt();
         }
        
@@ -268,6 +270,7 @@ public class VistaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar un Rut");
         }else{
         us.EliminarUsuario(txtRutUsuario1);
+        us.cargarTablaUsuarios(tablaUsuarios);
         limpiarTxt();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed

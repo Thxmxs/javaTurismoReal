@@ -5,6 +5,7 @@ import Model.Comuna;
 import Model.Provincia;
 import Model.Region;
 import java.awt.TextField;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -145,63 +146,70 @@ public class DepartamentosMethod {
 
     public void agregarDepartamento(JTextField txtdir, JTextField txtCostoDepartamento, JTextField txtEstadoDepto, JTextField txtdescripcion,
             JTextField txtorientacion, JTextField txtestacionamiento, JTextField txtnumHabitaciones, JTextField txtnumbaños,
-            JTextField txtnumEstacionamientos, int comuna, int provincia, int region) {
+            JTextField txtnumEstacionamientos, int comuna, int provincia, int region, JTextField valorDividendo, JTextField valorContribucion) {
 
         try {
+            String sql = "{ call sp_create_departamento_with_tax_java( ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?) }";
+            CallableStatement cstm;
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement("insert into departamento (direccion,costo_departamento,estado_departamento, "
-                    + "descripcion_estado_departamento,orientacion_departamento,estacionamiento,num_habitaciones,num_baño,"
-                    + "num_estacionamiento,comuna_id_comuna,comuna_provincia_id_provincia,comuna_provincia_region_id_region) values (?,?,?,?,?,?,?,?,?,?,?,?) ");
-            ps.setString(1, txtdir.getText());
-            ps.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
-            ps.setString(3, txtEstadoDepto.getText());
-            ps.setString(4, txtdescripcion.getText());
-            ps.setString(5, txtorientacion.getText());
-            ps.setString(6, txtestacionamiento.getText());
-            ps.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
-            ps.setInt(8, Integer.parseInt(txtnumbaños.getText()));
-            ps.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
-            ps.setInt(10, comuna);
-            ps.setInt(11, provincia);
-            ps.setInt(12, region);
+            cstm = conn.prepareCall(sql);
 
-            ps.executeUpdate();
+            cstm.setString(1, txtdir.getText());
+            cstm.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
+            cstm.setString(3, txtEstadoDepto.getText());
+            cstm.setString(4, txtdescripcion.getText());
+            cstm.setString(5, txtorientacion.getText());
+            cstm.setString(6, txtestacionamiento.getText());
+            cstm.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
+            cstm.setInt(8, Integer.parseInt(txtnumbaños.getText()));
+            cstm.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
+            cstm.setInt(10, comuna);
+            cstm.setInt(11, provincia);
+            cstm.setInt(12, region);
+            cstm.setString(13, valorDividendo.getText());
+            cstm.setString(14, valorContribucion.getText());
+
+            cstm.execute();
             JOptionPane.showMessageDialog(null, "Guardado Correctamente");
         } catch (Exception e) {
             System.out.println("Error ," + e);
         }
     }
 
-    public void ActualizarDepartamento(JTextField txtdir, JTextField txtCostoDepartamento, JTextField txtEstadoDepto, JTextField txtdescripcion,
+    public void ActualizarDepartamentoo(JTextField txtdir, JTextField txtCostoDepartamento, JTextField txtEstadoDepto, JTextField txtdescripcion,
             JTextField txtorientacion, JTextField txtestacionamiento, JTextField txtnumHabitaciones, JTextField txtnumbaños,
             JTextField txtnumEstacionamientos, int comuna, int provincia, int region, JTextField txtIdDepartamento) {
 
         try {
-            conn = Conexion.getConnection();
-            ps = conn.prepareStatement("update departamento set direccion=?,costo_departamento=?,estado_departamento=?, "
-                    + "descripcion_estado_departamento=?,orientacion_departamento=?,estacionamiento=?,num_habitaciones=?,num_baño=?,"
-                    + "num_estacionamiento=?,comuna_id_comuna=?,comuna_provincia_id_provincia=?,comuna_provincia_region_id_region=? where id_departamento=?");
-            ps.setString(1, txtdir.getText());
-            ps.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
-            ps.setString(3, txtEstadoDepto.getText());
-            ps.setString(4, txtdescripcion.getText());
-            ps.setString(5, txtorientacion.getText());
-            ps.setString(6, txtestacionamiento.getText());
-            ps.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
-            ps.setInt(8, Integer.parseInt(txtnumbaños.getText()));
-            ps.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
-            ps.setInt(10, comuna);
-            ps.setInt(11, provincia);
-            ps.setInt(12, region);
-            ps.setInt(13, Integer.parseInt(txtIdDepartamento.getText()));
+            String sql = "{ call SP_UPDATE_DEPARTAMENTOO_JAVA( ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?) }";
+            CallableStatement cstm;
 
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Actualizado Correctamente");
+            conn = Conexion.getConnection();
+            cstm = conn.prepareCall(sql);
+
+            cstm.setString(1, txtdir.getText());
+            cstm.setInt(2, Integer.parseInt(txtCostoDepartamento.getText()));
+            cstm.setString(3, txtEstadoDepto.getText());
+            cstm.setString(4, txtdescripcion.getText());
+            cstm.setString(5, txtorientacion.getText());
+            cstm.setString(6, txtestacionamiento.getText());
+            cstm.setInt(7, Integer.parseInt(txtnumHabitaciones.getText()));
+            cstm.setInt(8, Integer.parseInt(txtnumbaños.getText()));
+            cstm.setInt(9, Integer.parseInt(txtnumEstacionamientos.getText()));
+            cstm.setInt(10, comuna);
+            cstm.setInt(11, provincia);
+            cstm.setInt(12, region);
+            cstm.setString(13, txtIdDepartamento.getText());
+            cstm.execute();
+
+            JOptionPane.showMessageDialog(null, "Departamento Actualizado Correctamente");
         } catch (Exception e) {
             System.out.println("Error ," + e);
         }
     }
-     public void EliminarDepartamento(JTextField txtIdDepartamento) {
+
+
+    public void EliminarDepartamento(JTextField txtIdDepartamento) {
 
         try {
             conn = Conexion.getConnection();
@@ -216,9 +224,9 @@ public class DepartamentosMethod {
         }
     }
 
-    public void PasarDatosTablasACampos(int fila,String codigo,JTextField txt1, JTextField txt2, JTextField txt3, JTextField txt4, JTextField txt5,
-            JTextField txt6, JTextField txt7, JTextField txt8, JTextField txt9, JTextField txt10 ) {
-Region region = new Region();
+    public void PasarDatosTablasACampos(int fila, String codigo, JTextField txt1, JTextField txt2, JTextField txt3, JTextField txt4, JTextField txt5,
+            JTextField txt6, JTextField txt7, JTextField txt8, JTextField txt9, JTextField txt10) {
+        Region region = new Region();
         try {
             conn = Conexion.getConnection();
 

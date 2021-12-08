@@ -5,6 +5,7 @@
 package View;
 
 import Method.InventarioDepartamentoMethod;
+import javax.swing.JOptionPane;
 
 public class VistaInventarioDepartamento extends javax.swing.JFrame {
 
@@ -50,7 +51,7 @@ public class VistaInventarioDepartamento extends javax.swing.JFrame {
         btonRefrescarObjetos = new javax.swing.JButton();
         btonEliminarObjetoInventarioDepto = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Agregar objetos al inventario");
@@ -245,7 +246,13 @@ public class VistaInventarioDepartamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btonAgregarAlInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonAgregarAlInventarioActionPerformed
-        idm.AgregarObjetoAlInventarioDepto(txtIdObjetoInventario, txtIdDepartamentoInventario);
+        if (txtIdDepartamentoInventario.getText().equals("") || txtIdObjetoInventario.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos");
+        } else {
+            idm.AgregarObjetoAlInventarioDepto(txtIdObjetoInventario, txtIdDepartamentoInventario);
+            idm.cargarTablaInventarioPorDepartamento(TablaInventario);
+        }
+
     }//GEN-LAST:event_btonAgregarAlInventarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -273,7 +280,14 @@ public class VistaInventarioDepartamento extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaObjetosInventarioMouseClicked
 
     private void btonEliminarObjetoInventarioDeptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonEliminarObjetoInventarioDeptoActionPerformed
-        idm.EliminarObjetoInventarioDepto(txtIdObjetoInventario, txtIdDepartamentoInventario);
+        if (txtIdDepartamentoInventario.getText().equals("") || txtIdObjetoInventario.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos");
+        } else {
+            idm.EliminarObjetoInventarioDepto(txtIdObjetoInventario, txtIdDepartamentoInventario);
+            idm.cargarTablaInventarioPorDepartamento(TablaInventario);
+        }
+
+
     }//GEN-LAST:event_btonEliminarObjetoInventarioDeptoActionPerformed
 
     /**

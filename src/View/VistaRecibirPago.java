@@ -45,7 +45,7 @@ public class VistaRecibirPago extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btonRefrescar2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaMontoFinalAPagar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

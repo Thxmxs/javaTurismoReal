@@ -5,6 +5,7 @@
 package View;
 
 import Method.objetoHabitacionMethod;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -208,7 +209,14 @@ public class VistaIngresarObjeto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btonAgregarObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonAgregarObjetoActionPerformed
-       ohm.agregarObjeto(txtNombreObjeto, txtValorObjeto, txtCategoriaObjeto, txtSubCategoriaObjeto, txtDescripcionObjeto);
+       if(txtNombreObjeto.getText().equals("") || txtValorObjeto.getText().equals("") || txtCategoriaObjeto.getText().equals("") || txtSubCategoriaObjeto.getText().equals("")
+               || txtDescripcionObjeto.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "Debe ingresar todos los campos");
+       }
+       else{
+        ohm.agregarObjeto(txtNombreObjeto, txtValorObjeto, txtCategoriaObjeto, txtSubCategoriaObjeto, txtDescripcionObjeto);
+        ohm.cargarTablaObjetos(TablaObjetos);
+       }
     }//GEN-LAST:event_btonAgregarObjetoActionPerformed
 
     private void btonRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonRefrescarActionPerformed
@@ -216,11 +224,23 @@ public class VistaIngresarObjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btonRefrescarActionPerformed
 
     private void btonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonEditarActionPerformed
+               if(txtIdObjeto.getText().equals("") || txtNombreObjeto.getText().equals("") || txtValorObjeto.getText().equals("") || txtCategoriaObjeto.getText().equals("") || txtSubCategoriaObjeto.getText().equals("")
+               || txtDescripcionObjeto.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "Debe ingresar todos los campos");
+       }else{
         ohm.ActualizarObjeto(txtIdObjeto, txtNombreObjeto, txtValorObjeto, txtCategoriaObjeto, txtSubCategoriaObjeto, txtDescripcionObjeto);
+             ohm.cargarTablaObjetos(TablaObjetos);
+               }
     }//GEN-LAST:event_btonEditarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(txtIdObjeto.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Debe rellenar el campo ID");}
+        else{
         ohm.EliminarObjeto(txtIdObjeto);
+        ohm.cargarTablaObjetos(TablaObjetos);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TablaObjetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaObjetosMouseClicked

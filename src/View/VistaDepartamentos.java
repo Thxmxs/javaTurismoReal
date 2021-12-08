@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
  * @author thoma
  */
 public class VistaDepartamentos extends javax.swing.JFrame {
-       DepartamentosMethod dm = new DepartamentosMethod();
+
+    DepartamentosMethod dm = new DepartamentosMethod();
+
     /**
      * Creates new form VistaDepartamentos
      */
@@ -72,6 +74,10 @@ public class VistaDepartamentos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDepartamentos = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtDividendo = new javax.swing.JTextField();
+        txtContribucion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,6 +182,10 @@ public class VistaDepartamentos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaDepartamentos);
 
+        jLabel15.setText("Dividendo");
+
+        jLabel16.setText("Contribucion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,10 +260,21 @@ public class VistaDepartamentos extends javax.swing.JFrame {
                                             .addComponent(cmBoxRegion, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(cmBoxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmBoxComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addGap(26, 26, 26)
+                                                .addComponent(cmBoxComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel16)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(txtContribucion))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(jLabel15)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(txtDividendo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                        .addGap(0, 171, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -276,7 +297,9 @@ public class VistaDepartamentos extends javax.swing.JFrame {
                     .addComponent(txtNumEstacionamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel15)
+                    .addComponent(txtDividendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -289,7 +312,9 @@ public class VistaDepartamentos extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmBoxRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel16)
+                            .addComponent(txtContribucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,62 +341,60 @@ public class VistaDepartamentos extends javax.swing.JFrame {
         dm.mostrarCmbxComunas(cmBoxComuna);
         dm.mostrarCmbxProvincias(cmBoxProvincia);
 }*/
-private void mostrarComboRegiones(){
-DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel(dm.mostrarRegiones());
-cmBoxRegion.setModel(modeloCombo);
-}
+    private void mostrarComboRegiones() {
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel(dm.mostrarRegiones());
+        cmBoxRegion.setModel(modeloCombo);
+    }
 
     private void tablaDepartamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDepartamentosMouseClicked
-int fila = tablaDepartamentos.getSelectedRow();
-String codigo = tablaDepartamentos.getValueAt(fila, 0).toString();
-
-
-dm.PasarDatosTablasACampos(fila, codigo,txtIdDepartmaneto, txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos);
+        int fila = tablaDepartamentos.getSelectedRow();
+        String codigo = tablaDepartamentos.getValueAt(fila, 0).toString();
+        
+        dm.PasarDatosTablasACampos(fila, codigo, txtIdDepartmaneto, txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos);
     }//GEN-LAST:event_tablaDepartamentosMouseClicked
 
     private void btnCargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTablaActionPerformed
-
-       dm.cargarTablaDepartamentos(tablaDepartamentos);
+        
+        dm.cargarTablaDepartamentos(tablaDepartamentos);
     }//GEN-LAST:event_btnCargarTablaActionPerformed
 
     private void btonAgregarDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonAgregarDepartamentoActionPerformed
         Region region = (Region) cmBoxRegion.getSelectedItem();
         Provincia provincia = (Provincia) cmBoxProvincia.getSelectedItem();
         Comuna comuna = (Comuna) cmBoxComuna.getSelectedItem();
-        if(txtDireccion.getText().equals("") || txtCosto.getText().equals("") || txtEstado.getText().equals("") ||txtDescripcion.getText().equals("")
-                || txtOrientacion.getText().equals("") || txtEstacionamiento.getText().equals("") || txtNumHabitaciones.getText().equals("") || txtNumBaños.getText().equals("")|| txtNumEstacionamientos.getText().equals("") || cmBoxComuna.getSelectedIndex()==0 || cmBoxProvincia.getSelectedIndex()==0 || cmBoxRegion.getSelectedIndex()==0
-                || comuna == null || provincia == null || region == null){
+        if (txtDireccion.getText().equals("") || txtCosto.getText().equals("") || txtEstado.getText().equals("") || txtDescripcion.getText().equals("")
+                || txtOrientacion.getText().equals("") || txtEstacionamiento.getText().equals("") || txtNumHabitaciones.getText().equals("") || txtNumBaños.getText().equals("") || txtNumEstacionamientos.getText().equals("") || cmBoxComuna.getSelectedIndex() == 0 || cmBoxProvincia.getSelectedIndex() == 0 || cmBoxRegion.getSelectedIndex() == 0
+                || comuna == null || provincia == null || region == null || txtContribucion.getText().equals("") || txtDividendo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Porfavor rellene todos los campos");
+        } else if (!txtCosto.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo costo solo acepta numeros");
+        } else if (!txtNumHabitaciones.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo numHabitaciones solo acepta numeros");
+        } else if (!txtNumBaños.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo numBaños solo acepta numeros");
+        } else if (!txtNumEstacionamientos.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El numEstacionamientos costo solo acepta numeros");
+        } else {
+            dm.agregarDepartamento(txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos, comuna.getIdComuna(), provincia.getIdProvincia(), region.getIdRegion(), txtDividendo, txtContribucion);
+            dm.cargarTablaDepartamentos(tablaDepartamentos);
         }
-        else if(!txtCosto.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo costo solo acepta numeros");
-        }
-         else if(!txtNumHabitaciones.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo numHabitaciones solo acepta numeros");
-        }
-         else if(!txtNumBaños.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo numBaños solo acepta numeros");
-        }
-         else if(!txtNumEstacionamientos.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El numEstacionamientos costo solo acepta numeros");
-        }
-        dm.agregarDepartamento(txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos, comuna.getIdComuna(), provincia.getIdProvincia(), region.getIdRegion());
+        
     }//GEN-LAST:event_btonAgregarDepartamentoActionPerformed
 
     private void cmBoxRegionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmBoxRegionItemStateChanged
-       if(evt.getStateChange() == ItemEvent.SELECTED){
-       Region region = (Region) cmBoxRegion.getSelectedItem();
-       
-       Provincia provincia = new Provincia();
-       DefaultComboBoxModel modeloComboProvincias = new DefaultComboBoxModel(dm.mostrarProvincias(region.getIdRegion()));
-       cmBoxProvincia.setModel(modeloComboProvincias);
-       }
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Region region = (Region) cmBoxRegion.getSelectedItem();
+            
+            Provincia provincia = new Provincia();
+            DefaultComboBoxModel modeloComboProvincias = new DefaultComboBoxModel(dm.mostrarProvincias(region.getIdRegion()));
+            cmBoxProvincia.setModel(modeloComboProvincias);
+        }
     }//GEN-LAST:event_cmBoxRegionItemStateChanged
 
     private void cmBoxProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmBoxProvinciaItemStateChanged
         // TODO add your handling code here:
-        if(evt.getStateChange() == ItemEvent.SELECTED){
-            Provincia provincia =(Provincia) cmBoxProvincia.getSelectedItem();
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Provincia provincia = (Provincia) cmBoxProvincia.getSelectedItem();
             Comuna comuna = new Comuna();
             DefaultComboBoxModel modeloComboComunas = new DefaultComboBoxModel(dm.mostrarComunas(provincia.getIdProvincia()));
             cmBoxComuna.setModel(modeloComboComunas);
@@ -383,31 +406,31 @@ dm.PasarDatosTablasACampos(fila, codigo,txtIdDepartmaneto, txtDireccion, txtCost
         Provincia provincia = (Provincia) cmBoxProvincia.getSelectedItem();
         Comuna comuna = (Comuna) cmBoxComuna.getSelectedItem();
         
-         if(txtDireccion.getText().equals("") || txtCosto.getText().equals("") || txtEstado.getText().equals("") ||txtDescripcion.getText().equals("")
-                || txtOrientacion.getText().equals("") || txtEstacionamiento.getText().equals("") || txtNumHabitaciones.getText().equals("") || txtNumBaños.getText().equals("")|| txtNumEstacionamientos.getText().equals("") || cmBoxComuna.getSelectedIndex()==0 || cmBoxProvincia.getSelectedIndex()==0 || cmBoxRegion.getSelectedIndex()==0
-                || comuna == null || provincia == null || region == null){
+        if (txtDireccion.getText().equals("") || txtCosto.getText().equals("") || txtEstado.getText().equals("") || txtDescripcion.getText().equals("")
+                || txtOrientacion.getText().equals("") || txtEstacionamiento.getText().equals("") || txtNumHabitaciones.getText().equals("") || txtNumBaños.getText().equals("") || txtNumEstacionamientos.getText().equals("") || cmBoxComuna.getSelectedIndex() == 0 || cmBoxProvincia.getSelectedIndex() == 0 || cmBoxRegion.getSelectedIndex() == 0
+                || comuna == null || provincia == null || region == null) {
             JOptionPane.showMessageDialog(null, "Porfavor rellene todos los campos para actualizar");
+        } else if (!txtCosto.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo costo solo acepta numeros");
+        } else if (!txtNumHabitaciones.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo numHabitaciones solo acepta numeros");
+        } else if (!txtNumBaños.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El campo numBaños solo acepta numeros");
+        } else if (!txtNumEstacionamientos.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "El numEstacionamientos costo solo acepta numeros");
+        } else {
+            dm.ActualizarDepartamentoo(txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos, comuna.getIdComuna(), provincia.getIdProvincia(), region.getIdRegion(), txtIdDepartmaneto);
+            dm.cargarTablaDepartamentos(tablaDepartamentos);
         }
-        else if(!txtCosto.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo costo solo acepta numeros");
-        }
-         else if(!txtNumHabitaciones.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo numHabitaciones solo acepta numeros");
-        }
-         else if(!txtNumBaños.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El campo numBaños solo acepta numeros");
-        }
-         else if(!txtNumEstacionamientos.getText().matches("[0-9]+")){
-        JOptionPane.showMessageDialog(null, "El numEstacionamientos costo solo acepta numeros");
-        }
-        dm.ActualizarDepartamento(txtDireccion, txtCosto, txtEstado, txtDescripcion, txtOrientacion, txtEstacionamiento, txtNumHabitaciones, txtNumBaños, txtNumEstacionamientos, comuna.getIdComuna(), provincia.getIdProvincia(), region.getIdRegion(),txtIdDepartmaneto);
     }//GEN-LAST:event_btonActualizarDepartamentoActionPerformed
 
     private void btonEliminarDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonEliminarDepartamentoActionPerformed
-        if(txtIdDepartmaneto.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Debe ingresar el id del departamento");
+        if (txtIdDepartmaneto.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el id del departamento");
+        } else {
+            dm.EliminarDepartamento(txtIdDepartmaneto);
+            dm.cargarTablaDepartamentos(tablaDepartamentos);
         }
-        dm.EliminarDepartamento(txtIdDepartmaneto);
     }//GEN-LAST:event_btonEliminarDepartamentoActionPerformed
 
     /**
@@ -459,6 +482,8 @@ dm.PasarDatosTablasACampos(fila, codigo,txtIdDepartmaneto, txtDireccion, txtCost
     private javax.swing.JLabel jLabel12;
     public javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -469,9 +494,11 @@ dm.PasarDatosTablasACampos(fila, codigo,txtIdDepartmaneto, txtDireccion, txtCost
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaDepartamentos;
+    private javax.swing.JTextField txtContribucion;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtDividendo;
     public javax.swing.JTextField txtEstacionamiento;
     public javax.swing.JTextField txtEstado;
     public javax.swing.JTextField txtIdDepartmaneto;

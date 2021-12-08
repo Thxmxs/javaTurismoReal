@@ -36,8 +36,12 @@ public class MenuAdmin extends javax.swing.JFrame {
         menuItemObjeto = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         MenuMantenciones = new javax.swing.JMenu();
         menuItemMantencionDepartamentos = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +89,22 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         MenuMantenedores.add(jMenuItem2);
 
+        jMenuItem3.setText("Servicios Extras");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(jMenuItem3);
+
+        jMenuItem4.setText("Planificar Transporte");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        MenuMantenedores.add(jMenuItem4);
+
         MenuBarAdmin.add(MenuMantenedores);
 
         MenuMantenciones.setText("Mantencion");
@@ -98,6 +118,18 @@ public class MenuAdmin extends javax.swing.JFrame {
         MenuMantenciones.add(menuItemMantencionDepartamentos);
 
         MenuBarAdmin.add(MenuMantenciones);
+
+        jMenu1.setText("Reportes");
+
+        jMenuItem5.setText("Generar Reportes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        MenuBarAdmin.add(jMenu1);
 
         setJMenuBar(MenuBarAdmin);
 
@@ -152,6 +184,21 @@ public class MenuAdmin extends javax.swing.JFrame {
        vrp.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        vistaServiciosExtras vse = new vistaServiciosExtras();
+        vse.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      vistaPlanificarTransporte vpt = new vistaPlanificarTransporte();
+      vpt.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        vistaReportes vr = new vistaReportes();
+        vr.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -192,8 +239,12 @@ public class MenuAdmin extends javax.swing.JFrame {
     public javax.swing.JMenu MenuMantenciones;
     private javax.swing.JMenu MenuMantenedores;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     public javax.swing.JMenuItem menuItemDepartamentos;
     public javax.swing.JMenuItem menuItemMantencionDepartamentos;
     private javax.swing.JMenuItem menuItemObjeto;
