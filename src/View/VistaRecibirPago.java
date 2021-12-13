@@ -206,6 +206,7 @@ public class VistaRecibirPago extends javax.swing.JFrame {
 
     private void btonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonPagarActionPerformed
         re.agregarPagoFinal(txtIdReservapago, cmbBoxFormaDePago, txtTotalApagar);
+           re.cargarReservasPagadas(tablareservaspagadas);
     }//GEN-LAST:event_btonPagarActionPerformed
 
     private void tablareservaspagadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablareservaspagadasMouseClicked

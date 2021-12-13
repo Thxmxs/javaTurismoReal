@@ -4,6 +4,7 @@ package View;
 import Controller.LoginController;
 import Method.CuentaUsuarioMethod;
 import Model.CuentaUsuario;
+import ViewFuncionario.MenuFuncionario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -125,6 +126,7 @@ public class Login extends javax.swing.JFrame {
                     }
                     if (cu.getIdTipoUsuario().getIdtipoUsuario() == 3) {
                         MenuFuncionario mf = new MenuFuncionario();
+                        
                         mf.setVisible(true);
                         this.dispose();
                     }

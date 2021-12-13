@@ -266,12 +266,13 @@ public class VistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(txtRutUsuario1.equals("")){
+        if(txtRutUsuario1.getText().equals("") || txtRutUsuario1.getText() == ""){
             JOptionPane.showMessageDialog(null, "Debe ingresar un Rut");
         }else{
         us.EliminarUsuario(txtRutUsuario1);
         us.cargarTablaUsuarios(tablaUsuarios);
         limpiarTxt();
+        JOptionPane.showMessageDialog(null, "Eliminado correctamente");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
     private void limpiarTxt() {

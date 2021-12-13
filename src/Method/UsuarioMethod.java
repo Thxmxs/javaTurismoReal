@@ -110,7 +110,7 @@ public class UsuarioMethod {
 
             cstm.execute();
 
-            JOptionPane.showMessageDialog(null, "Usuario Eliminado Correctamente");
+
         } catch (Exception e) {
             System.out.println("Error ," + e);
         }
